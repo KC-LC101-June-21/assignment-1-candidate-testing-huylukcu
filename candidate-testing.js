@@ -2,9 +2,21 @@ const input = require('readline-sync');
 
 // TODO 2: modify your quiz app to ask 5 questions //
 
-let questions = ["Who was the first American woman in space? ", "True or false: 5 kilometer == 5000 meters? ", "(5 + 3)/2 * 10 = ? ", "Given the array [8, 'Orbit', 'Trajectory', 45], what entry is at index 2? ", "What is the minimum crew size for the ISS? "];
+let questions = [
+  "Who was the first American woman in space? ", 
+  "True or false: 5 kilometer == 5000 meters? ", 
+  "(5 + 3)/2 * 10 = ? ", 
+  "Given the array [8, 'Orbit', 'Trajectory', 45], what entry is at index 2? ", 
+  "What is the minimum crew size for the ISS? "
+];
 
-let correctAnswers = ["Sally Ride", "true", "40", "Trajectory", "3"];
+let correctAnswers = [
+  "Sally Ride", 
+  "true", 
+  "40", 
+  "Trajectory", 
+  "3"
+  ];
 
 // TODO 1.1a: Define candidateName // 
 let candidateName = "";
@@ -43,17 +55,22 @@ function askQuestion() {
 function gradeQuiz(candidateAnswers) {
 
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
-  if(candidateAnswer.toLocaleLowerCase()===correctAnswer.toLowerCase()){
-    console.log("Correct!");
+    let numberOfCorrectAnswers = 0;
 
-  }else{
-    console.log(" Not Correct!");
+  for(let j = 0; j < correctAnswers.length; j++){
+    if(candidateAnswers[j].toLocaleLowerCase() === correctAnswers[j].toLowerCase()){
+      numberOfCorrectAnswers++;
+    }
   }
+  let grade = (numberOfCorrectAnswers / questions.length) * 100;
 
-
-  let grade;
+ console.log(">>> Overall Grade: " + grade + "%" + " (" + numberOfCorrectAnswers + " of " + questions.length + " responses correct) <<<");
+ if(grade < 80){
+   console.log(">>> Status: FAILED <<<")
+ } else{
+   console.log(">>> Status: PASSED <<<")
+ }
   
-
   return grade;
 }
 
